@@ -14,14 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('proveedores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getProveedores'], 'as' => 'proveedores'); # revisar el "as" para que sirve?
 Route::group([
     'middleware'=>'api',
     'namespace' => 'App\Http\Controllers',
-    'prefix'=> 'auth'
 ], function($router){
-    Route::post('login', 'AuthController@login');
-    Route::post('register', 'AuthController@register');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::get('user-profile', 'AuthController@userProfile');
+    Route::group(['prefix'=>'auth'], function(){
+        Route::post('login', 'AuthController@login');
+        Route::post('register', 'AuthController@register');
+        Route::post('logout', 'AuthController@logout');
+        Route::post('refresh', 'AuthController@refresh');
+        Route::get('user-profile', 'AuthController@userProfile');
+    });
+    Route::group(['prefix'=>'proveedores'], function(){
+        Route::get('getProveedores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getProveedores']);
+        Route::get('getDistribuidores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getDistribuidores']);
+        Route::post('updateProveedorIsDistribuidor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@updateProveedorIsDistribuidor']);
+    });
 });

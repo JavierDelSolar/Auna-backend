@@ -14,6 +14,9 @@ class CreateMaterialRubrosTable extends Migration
     public function up()
     {
         Schema::create('material_rubros', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_spanish2_ci';
+            
             $table->id();
             $table->string('rubro','50');
             $table->boolean('habilitado')->default(true);

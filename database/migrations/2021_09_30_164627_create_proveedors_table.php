@@ -24,7 +24,8 @@ class CreateProveedorsTable extends Migration
             $table->string('representante_nombre', '150');
             $table->string('representante_dni', '15');
             $table->string('nro_partida', '20');
-            $table->boolean('distribuidor');
+            $table->boolean('distribuidor')->default(false);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }

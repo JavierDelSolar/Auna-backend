@@ -14,12 +14,16 @@ class CreateMaterialsTable extends Migration
     public function up()
     {
         Schema::create('materials', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_spanish2_ci';
+            
             $table->id();
             $table->string('codigo', '10');
             $table->string('descripcion', '100');
             $table->foreignId('id_rubro')->constrained('material_rubros');
             $table->foreignId('id_dci')->constrained('material_dcis');
             $table->string('presentacion', '20');
+            $table->enum('estado', ['activo', 'agotado', 'descontinuado'])->default('activo');
             $table->timestamps();
         });
     }

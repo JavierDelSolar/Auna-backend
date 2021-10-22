@@ -15,14 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', '40')->unique();
+            $table->string('username', '30')->unique();
             $table->string('email', '100')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('rol', ['proveedor', 'gerente', 'asistente', 'administrador']);
+            $table->enum('role', ['administrador', 'gerente', 'asistente', 'proveedor']);
+            $table->boolean('enabled')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array('username' => 'admin',
+                'email' => 'jdelsolar@auna.pe',
+                'password' => Hash::make('Auna_2022'),
+                'role' => 'administrador')
+        );
     }
 
     /**

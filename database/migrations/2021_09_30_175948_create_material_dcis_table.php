@@ -14,11 +14,14 @@ class CreateMaterialDcisTable extends Migration
     public function up()
     {
         Schema::create('material_dcis', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_spanish2_ci';
+
             $table->id();
             $table->string('principio_activo','100');
             $table->string('concentracion', '50');
             $table->string('forma_farmaceutica', '50');
-            $table->boolean('habilitado')->default(true);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
