@@ -23,11 +23,14 @@ Route::group([
         Route::post('login', 'AuthController@login');
         Route::post('register', 'AuthController@register');
         Route::post('logout', 'AuthController@logout');
-        Route::post('refresh', 'AuthController@refresh');
+        Route::get('refresh', 'AuthController@refresh');
         Route::get('user-profile', 'AuthController@userProfile');
     });
-    Route::group(['prefix'=>'proveedores'], function(){
-        Route::get('getProveedores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getProveedores']);
+    Route::group(['prefix'=>'proveedor'], function(){
+        Route::post('getProveedor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getProveedor']);
+        Route::post('createProveedor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@createProveedor']);
+        Route::post('updateProveedor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@updateProveedor']);
+
         Route::get('getDistribuidores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getDistribuidores']);
         Route::post('updateProveedorIsDistribuidor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@updateProveedorIsDistribuidor']);
     });

@@ -9,6 +9,12 @@ class Proveedor extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'preferido' => 'boolean',
+        'distribuidor' => 'boolean',
+        'enabled' => 'boolean',
+      ];
+
     protected $fillable = [
         'razon_social',
         'ruc',
@@ -16,6 +22,7 @@ class Proveedor extends Model
         'representante_nombre',
         'representante_dni',
         'nro_partida',
+        'preferido',
         'distribuidor'
     ];
 }

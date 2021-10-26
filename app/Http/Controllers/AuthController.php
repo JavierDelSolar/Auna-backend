@@ -34,7 +34,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:30',
             'email' => 'required|string|email|max:100|unique:users',
-            'id_rol' => 'required|in:1,2,3,4',
+            'role' => 'required|string',
             'password' => 'required|string|confirmed|min:6',
         ]);
 
@@ -72,6 +72,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
+            'estado'=> true,
             'user' => auth()->user()
         ]);
     }

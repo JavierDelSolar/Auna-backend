@@ -24,7 +24,8 @@ class CreateMaterialsTable extends Migration
             $table->foreignId('id_dci')->constrained('material_dcis');
             $table->string('presentacion', '20');
             $table->enum('estado', ['activo', 'agotado', 'descontinuado'])->default('activo');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

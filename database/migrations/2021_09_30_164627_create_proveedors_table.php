@@ -21,12 +21,14 @@ class CreateProveedorsTable extends Migration
             $table->string('razon_social', '80')->unique();
             $table->string('ruc', '11')->unique();
             $table->string('direccion', '150');
-            $table->string('representante_nombre', '150');
-            $table->string('representante_dni', '15');
-            $table->string('nro_partida', '20');
+            $table->string('representante_nombre', '150')->nullable(true);
+            $table->string('representante_dni', '15')->nullable(true);
+            $table->string('nro_partida', '20')->nullable(true);
+            $table->boolean('preferido')->default(false);
             $table->boolean('distribuidor')->default(false);
             $table->boolean('enabled')->default(true);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
