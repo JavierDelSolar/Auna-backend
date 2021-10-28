@@ -32,6 +32,17 @@ Route::group([
         Route::post('updateProveedor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@updateProveedor']);
 
         Route::get('getDistribuidores', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@getDistribuidores']);
-        Route::post('updateProveedorIsDistribuidor', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'ProveedorController@updateProveedorIsDistribuidor']);
+
+    });
+
+    Route::group(['prefix'=>'material'], function(){
+        Route::post('getRubro', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@getRubro']);
+        Route::post('createRubro', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@createRubro']);
+        Route::post('updateRubro', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@updateRubro']);
+
+        Route::post('getDCI', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@getDCI']);
+        Route::post('createDCI', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@createDCI']);
+        Route::post('updateDCI', ['middleware' => 'auth.role:administrador,gerente,asistente', 'uses' => 'MaterialController@updateDCI']);
+
     });
 });

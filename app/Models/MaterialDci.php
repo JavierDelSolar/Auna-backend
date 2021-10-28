@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class MaterialDci extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'enabled' => 'boolean',
+      ];
+
+    protected $fillable = [
+        'principio_activo',
+        'concentracion',
+        'forma_farmaceutica',
+        'dci'
+    ];
 }

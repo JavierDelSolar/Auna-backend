@@ -20,7 +20,8 @@ class CreateMaterialDcisTable extends Migration
             $table->id();
             $table->string('principio_activo','100');
             $table->string('concentracion', '50');
-            $table->string('forma_farmaceutica', '50');
+            $table->string('forma_farmaceutica', '30');
+            $table->string('dci', '80');
             $table->boolean('enabled')->default(true);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

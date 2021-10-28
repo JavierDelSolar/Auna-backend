@@ -18,9 +18,12 @@ class CreateMaterialRubrosTable extends Migration
             $table->collation = 'utf8_spanish2_ci';
             
             $table->id();
-            $table->string('rubro','50');
-            $table->boolean('habilitado')->default(true);
+            $table->string('rubro','50')->unique();
+            $table->boolean('enabled')->default(true);
         });
+
+        DB::table('material_rubros')->insert(array('rubro' => 'Farmacos No Oncologicos'));
+        DB::table('material_rubros')->insert(array('rubro' => 'Farmacos Oncologicos'));
     }
 
     /**
