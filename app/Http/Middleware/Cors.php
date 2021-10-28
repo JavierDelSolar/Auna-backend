@@ -16,7 +16,7 @@ class Cors
      */
     public function handle(Request $request, Closure $next)
     {
-        $http_origin = $_SERVER['HTTP_ORIGIN'];
+        $http_origin = $_SERVER['APP_URL'];
         $origins = array('http://localhost:4200', 'http://localhost', 'http://35.173.151.159');
         $http_origin = in_array($http_origin, $origins)?$http_origin:'';
         return $next($request)
